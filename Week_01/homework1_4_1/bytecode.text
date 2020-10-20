@@ -1,0 +1,66 @@
+主要分析下test方法，见下方注释
+
+private int test(int);
+    descriptor: (I)I
+    flags: (0x0002) ACC_PRIVATE
+    Code:
+      stack=2, locals=7, args_size=2 // 所需栈的深度为2，局部变量表元素个数为7，入参数量为2
+         0: iconst_1               // 加载int类型的1到操作数栈
+         1: istore_2               // 保存栈顶的值到局部变量表slot2上的变量
+         2: iconst_2               // 同上
+         3: istore_3
+         4: iconst_3
+         5: istore        4
+         7: iconst_4
+         8: istore        5
+        10: iload_2               // 局部变量表slot2上的变量到操作数栈顶
+        11: iload_1               // 局部变量表slot1上的变量到操作数栈顶
+        12: if_icmpge     45      // 进行比较，如果slot2上的值大于等于slot1上的值，则跳转到45行
+        15: iload_2               // 加载局部变量表slot2的变量到栈顶
+        16: iload_3               // 加载局部变量表slot3的变量到栈顶
+        17: iadd                  // 将栈顶两个元素出栈相加，然后入栈
+        18: iload         4       // 加载局部变量表slot4
+        20: isub                  // 将栈顶两个元素出栈相减，然后入栈
+        21: iload_3               // 加载局部变量表slot3
+        22: imul                  // 将栈顶两个元素出栈相乘，然后入栈
+        23: iload         5       // 加载局部变量表slot5
+        25: idiv                  // 将栈顶两个元素出栈相除，然后入栈
+        26: istore_1              // 将栈顶元素保存到局部变量表slot1上
+        27: iconst_0              // 加载int类型的0到操作数栈
+        28: istore        6       // 将栈顶值为0的int 赋值给局部变量表slot6上的元素
+        30: iload         6       // 加载局部变量表slot6到操作数栈上
+        32: iload_3               // 加载局部变量表slot3到操作数栈上
+        33: if_icmpge     45      // 栈顶两个元素进行比较，如果slot6上的元素大于等于slot3上的元素则跳转到45行
+        36: iinc          1, 1    // slot1上的元素加1
+        39: iinc          6, 1    // slot6上的元素加1
+        42: goto          30      // 跳转到30行
+        45: iload_1               // 加载slot1上的元素
+        46: ireturn               // 返回栈顶的int型值
+      LineNumberTable:
+        line 8: 0
+        line 9: 2
+        line 10: 4
+        line 11: 7
+        line 12: 10
+        line 13: 15
+        line 14: 27
+        line 15: 36
+        line 14: 39
+        line 18: 45
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           30      15     6     i   I
+            0      47     0  this   LHello;
+            0      47     1     e   I
+            2      45     2     a   I
+            4      43     3     b   I
+            7      40     4     c   I
+           10      37     5     d   I
+      StackMapTable: number_of_entries = 2
+        frame_type = 255 /* full_frame */
+          offset_delta = 30
+          locals = [ class Hello, int, int, int, int, int, int ]
+          stack = []
+        frame_type = 250 /* chop */
+          offset_delta = 14
+
