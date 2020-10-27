@@ -1,0 +1,20 @@
+Java HotSpot(TM) 64-Bit Server VM (25.161-b12) for bsd-amd64 JRE (1.8.0_161-b12), built on Dec 19 2017 16:22:20 by "java_re" with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+Memory: 4k page, physical 16777216k(1571200k free)
+
+/proc/meminfo:
+
+CommandLine flags: -XX:InitialHeapSize=2147483648 -XX:MaxHeapSize=2147483648 -XX:+PrintGC -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseParallelGC 
+0.419: [GC (Allocation Failure) [PSYoungGen: 524800K->87038K(611840K)] 524800K->137996K(2010112K), 0.0590340 secs] [Times: user=0.07 sys=0.27, real=0.06 secs] 
+0.577: [GC (Allocation Failure) [PSYoungGen: 611838K->87036K(611840K)] 662796K->249574K(2010112K), 0.0802844 secs] [Times: user=0.09 sys=0.39, real=0.08 secs] 
+0.743: [GC (Allocation Failure) [PSYoungGen: 611836K->87033K(611840K)] 774374K->357147K(2010112K), 0.0577552 secs] [Times: user=0.11 sys=0.24, real=0.05 secs] 
+0.887: [GC (Allocation Failure) [PSYoungGen: 611833K->87034K(611840K)] 881947K->468641K(2010112K), 0.0636818 secs] [Times: user=0.11 sys=0.24, real=0.06 secs] 
+1.036: [GC (Allocation Failure) [PSYoungGen: 611834K->87037K(611840K)] 993441K->589475K(2010112K), 0.0677256 secs] [Times: user=0.12 sys=0.28, real=0.07 secs] 
+Heap
+ PSYoungGen      total 611840K, used 108185K [0x0000000795580000, 0x00000007c0000000, 0x00000007c0000000)
+  eden space 524800K, 4% used [0x0000000795580000,0x0000000796a26ce8,0x00000007b5600000)
+  from space 87040K, 99% used [0x00000007b5600000,0x00000007baaff7b8,0x00000007bab00000)
+  to   space 87040K, 0% used [0x00000007bab00000,0x00000007bab00000,0x00000007c0000000)
+ ParOldGen       total 1398272K, used 502437K [0x0000000740000000, 0x0000000795580000, 0x0000000795580000)
+  object space 1398272K, 35% used [0x0000000740000000,0x000000075eaa96f0,0x0000000795580000)
+ Metaspace       used 2725K, capacity 4486K, committed 4864K, reserved 1056768K
+  class space    used 296K, capacity 386K, committed 512K, reserved 1048576K

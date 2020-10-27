@@ -1,0 +1,14 @@
+Java HotSpot(TM) 64-Bit Server VM (25.161-b12) for bsd-amd64 JRE (1.8.0_161-b12), built on Dec 19 2017 16:22:20 by "java_re" with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+Memory: 4k page, physical 16777216k(1441656k free)
+
+/proc/meminfo:
+
+CommandLine flags: -XX:InitialHeapSize=8589934592 -XX:MaxHeapSize=8589934592 -XX:+PrintGC -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseG1GC 
+0.339: [GC pause (G1 Evacuation Pause) (young) 408M->123M(8192M), 0.0471166 secs]
+0.450: [GC pause (G1 Evacuation Pause) (young) 479M->213M(8192M), 0.0397793 secs]
+0.538: [GC pause (G1 Evacuation Pause) (young) 569M->312M(8192M), 0.0406885 secs]
+0.640: [GC pause (G1 Evacuation Pause) (young) 668M->406M(8192M), 0.0384296 secs]
+0.733: [GC pause (G1 Evacuation Pause) (young) 762M->499M(8192M), 0.0392514 secs]
+0.835: [GC pause (G1 Evacuation Pause) (young) 855M->592M(8192M), 0.0417192 secs]
+0.932: [GC pause (G1 Evacuation Pause) (young) 948M->690M(8192M), 0.0472230 secs]
+1.040: [GC pause (G1 Evacuation Pause) (young) 1046M->785M(8192M), 0.0434936 secs]
