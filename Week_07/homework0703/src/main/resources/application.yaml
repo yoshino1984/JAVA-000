@@ -1,0 +1,17 @@
+# 应用名称
+spring:
+  application:
+    name: homework0703
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class_name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mytest?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root1234
+
+
+
+
+
+
+

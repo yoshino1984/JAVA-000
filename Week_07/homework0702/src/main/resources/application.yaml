@@ -1,0 +1,30 @@
+# 应用名称
+spring:
+  application:
+    name: homework0702
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    master:
+      name: master
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3339/main_slave?serverTimezone=UTC
+      username: root
+      password: root1234
+    slave1:
+      name: slave1
+      username: root
+      password: root1234
+      url: jdbc:mysql://localhost:3340/main_slave?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave2:
+      name: slave2
+      username: root
+      password: root1234
+      url: jdbc:mysql://localhost:3306/main_slave?serverTimezone=UTC
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/**/*Mapper.xml
+#  type-handlers-package: com.yoshino.homework05_2_5.type.handler
