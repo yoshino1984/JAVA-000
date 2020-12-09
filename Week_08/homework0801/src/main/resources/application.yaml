@@ -1,0 +1,9 @@
+# \u5E94\u7528\u540D\u79F0
+spring:
+  application:
+    name: homework01
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: mybatis/**/*Mapper.xml
