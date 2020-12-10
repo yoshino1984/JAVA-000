@@ -23,7 +23,7 @@ public class OrderController {
         final long start = System.currentTimeMillis();
         orderService.orderPay(count, amount);
         System.out.println("消耗时间为:" + (System.currentTimeMillis() - start));
-        return "";
+        return "success";
     }
 
     @PostMapping(value = "/orderPayTCC")
@@ -32,6 +32,6 @@ public class OrderController {
         final long start = System.currentTimeMillis();
         orderService.orderPayWithExp(count, amount);
         System.out.println("消耗时间为:" + (System.currentTimeMillis() - start));
-        return "";
+        return "success";
     }
 }
