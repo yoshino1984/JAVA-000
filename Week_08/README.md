@@ -11,6 +11,10 @@
 ### Week08 作业题目（周六）：
 1. （选做）列举常见的分布式事务，简单分析其使用场景和优缺点。
 2. （必做）基于 hmily TCC 或 ShardingSphere 的 Atomikos XA 实现一个简单的分布式事务应用 demo（二选一），提交到 Github。
+    - [基于hmily-tcc的demo](./homework02/demo-order/src/main/java/com/yoshino/order/TccOrderApplication.java)  
+    - 使用的hmily的sql，实现以下两个简单场景
+        1. 下订单，扣减余额，并扣减库存
+        2. 下订单，扣减余额成功，扣减库存失败回滚
 3. （选做）基于 ShardingSphere narayana XA 实现一个简单的分布式事务 demo。
 4. （选做）基于 seata 框架实现 TCC 或 AT 模式的分布式事务 demo。
 5. （选做☆）设计实现一个简单的 XA 分布式事务框架 demo，只需要能管理和调用 2 个 MySQL 的本地事务即可，不需要考虑全局事务的持久化和恢复、高可用等。
