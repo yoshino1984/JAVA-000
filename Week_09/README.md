@@ -11,7 +11,13 @@
 
 ### Week09 作业题目（周六）：
 - 3.（必做）结合 dubbo+hmily，实现一个 TCC 外汇交易处理，代码提交到 GitHub:
-    - (未完成)
+    - [account操作](./homework0902/demo0902-order/src/main/java/com/yoshino/order/service/impl/OrderServiceImpl.java)
+    - [account操作](./homework0902/demo0902-account/src/main/java/com/yoshino/account/service/impl/AccountServiceImpl.java)
+    - [sql](./homework0902/sql/hmily-demo.sql)
     - 用户 A 的美元账户和人民币账户都在 A 库，使用 1 美元兑换 7 人民币 ;
     - 用户 B 的美元账户和人民币账户都在 B 库，使用 7 人民币兑换 1 美元 ;
-    - 设计账户表，冻结资产表，实现上述两个本地事务的分布式事务。
+    - 只设计了订单表和账户表，账户表分为rmb账户和dollar账户\
+    流程: 下单然后根据订单id，开启分布式事务进行账户的扣减操作
+        1. try阶段：扣减A账户的rmb余额，增加rmb冻结数量；扣减B账户的dollar余额，增加dollar冻结数量
+        2. confirm阶段：扣减A账户的rmb冻结数量，并增加A账户的dollar余额；扣减B账户的dollar冻结数量，并增加B账户的rmb余额
+        3. cancel阶段：回退try阶段的操作

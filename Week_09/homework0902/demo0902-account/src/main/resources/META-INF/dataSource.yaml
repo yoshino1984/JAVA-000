@@ -1,0 +1,57 @@
+dataSources:
+  account01: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/hmily_account_01?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root1234
+  account00: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/hmily_account_02?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root1234
+
+rules:
+- !SHARDING
+  tables:
+    account_dollar:
+      actualDataNodes: account0${0..1}.account_dollar
+      tableStrategy:
+        none:
+      keyGenerateStrategy:
+        column: id
+        keyGeneratorName: snowflake
+    account_rmb:
+      actualDataNodes: account0${0..1}.account_rmb
+      tableStrategy:
+        none:
+      keyGenerateStrategy:
+        column: id
+        keyGeneratorName: snowflake
+  bindingTables:
+    - account_dollar,account_rmb
+  defaultDatabaseStrategy:
+    standard:
+      shardingColumn: user_id
+      shardingAlgorithmName: database_inline
+  defaultTableStrategy:
+    none:
+
+  shardingAlgorithms:
+    database_inline:
+      type: INLINE
+      props:
+        algorithm-expression: account0${Integer.valueOf(user_id) % 2}
+    account_inline:
+      type: INLINE
+      props:
+        algorithm-expression: account
+        allow-range-query-with-inline-sharding: true
+
+  keyGenerators:
+    snowflake:
+      type: SNOWFLAKE
+      props:
+        worker-id: 123
+
+props:
+  sql-show: false

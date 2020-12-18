@@ -1,0 +1,17 @@
+
+
+spring:
+  # 应用名称
+  application:
+    name: tcc-order
+  datasource:
+    username: root
+    password: root1234
+    url: jdbc:mysql://localhost:3306/hmily_order?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  type-aliases-package: com.yoshino.common.order.entity
+
+server:
+  port: 8180
