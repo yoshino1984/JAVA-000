@@ -15,14 +15,8 @@ public class RedisSubscriber extends JedisPubSub {
 
     private String name;
 
-    private RedisSubscriber(String name) {
+    public RedisSubscriber(String name) {
         this.name = name;
-    }
-
-    public static JedisPubSub subscribe(String channel, Jedis jedis, String name) {
-        RedisSubscriber subscriber = new RedisSubscriber(name);
-        jedis.subscribe(subscriber, channel);
-        return subscriber;
     }
 
     @Override

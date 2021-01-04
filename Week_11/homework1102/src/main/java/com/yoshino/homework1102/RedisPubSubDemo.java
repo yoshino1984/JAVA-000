@@ -6,8 +6,11 @@ import com.yoshino.homework1102.redis.RedisPublisher;
 import com.yoshino.homework1102.redis.RedisSubscriber;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPubSub;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -23,13 +26,15 @@ public class RedisPubSubDemo {
         String channelName = "orderChannel";
         int threadSize = 2;
         ExecutorService executor = Executors.newFixedThreadPool(threadSize);
+        List<RedisSubscriber> subscriberList = new ArrayList<>();
 
         for (int i = 0; i < 2; i++) {
             String subscribeName = "subscribe-" + i;
+            RedisSubscriber subscriber = new RedisSubscriber(subscribeName);
+            subscriberList.add(subscriber);
             Runnable runnable = () -> {
                 try (Jedis jedis = jedisPool.getResource()){
-                    RedisSubscriber.subscribe(channelName, jedis, subscribeName);
-                    System.out.println("after subscribe");
+                    jedis.subscribe(subscriber, channelName);
                 } catch (Exception e) {
                     System.out.println(String.format("subscribe channel error"));
                 }
@@ -50,6 +55,8 @@ public class RedisPubSubDemo {
         }
 
         Thread.sleep(2000);
+        // 取消订阅
+        subscriberList.forEach(JedisPubSub::unsubscribe);
         executor.shutdownNow();
     }
 
