@@ -1,10 +1,9 @@
 学习笔记
 ### 第十二周作业
 1. （必做）配置 redis 的主从复制，sentinel 高可用，Cluster 集群。
-   1. config配置文件
+   1. [config配置文件](./config)
    2. 启动和操作、验证集群下数据读写的命令步骤。
-
-
+   
 ```shell
 # 启动 redis，replica命令在config中，以6376为master
 redis-server /Users/xiaoyi/IdeaProjects/git/JAVA-000/Week_12/config/redis6376.conf
