@@ -4,9 +4,17 @@
 2. （选做）分别基于 jedis，RedisTemplate，Lettuce，Redission 实现 redis 基本操作的 demo，可以使用 spring-boot 集成上述工具。
 
 3. （选做）spring 集成练习:
-   - 实现 update 方法，配合 @CachePut
-   - 实现 delete 方法，配合 @CacheEvict
-   - 将示例中的 spring 集成 Lettuce 改成 jedis 或 redisson
+   -[x] 实现 update 方法，配合 @CachePut
+   -[x] 实现 delete 方法，配合 @CacheEvict  
+    [update和delete实现](./cache/src/main/java/io/kimmking/cache/service/UserServiceImpl.java)
+   -[x] 将示例中的 spring 集成 Lettuce 改成 jedis 或 redisson  
+      - 替换lettuce配置项为如下所示即可
+```text
+    jedis:
+      pool:
+        max-active: 16
+        max-wait: 10ms
+```
    
 4. （必做）基于 Redis 封装分布式数据操作：
    [分布式加锁减库存的demo](./homework1101/src/main/java/com/yoshino/homework1101/RedisDemo.java)
