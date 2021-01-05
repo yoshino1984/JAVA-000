@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
-@SpringBootApplication(scanBasePackages = "io.kimmking.cache")
+@SpringBootApplication(scanBasePackages = {"io.kimmking.cache", "com.yoshino.cache"})
 @MapperScan("io.kimmking.cache.mapper")
 @EnableCaching
 public class CacheApplication {

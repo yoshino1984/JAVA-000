@@ -19,7 +19,10 @@ spring:
     jedis:
       pool:
         max-active: 16
-        max-wait: 10ms
+        max-wait: 10
+        max-idle: 8
+        min-idle: 0
+    timeout: 100
 
 
 #    type: ehcache

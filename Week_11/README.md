@@ -7,13 +7,19 @@
    -[x] 实现 update 方法，配合 @CachePut
    -[x] 实现 delete 方法，配合 @CacheEvict  
     [update和delete实现](./cache/src/main/java/io/kimmking/cache/service/UserServiceImpl.java)
-   -[x] 将示例中的 spring 集成 Lettuce 改成 jedis 或 redisson  
-      - 替换lettuce配置项为如下所示即可
+   -[x] 将示例中的 spring 集成 Lettuce 改成 jedis 或 redisso
+        - 替换lettuce配置项为如下所示
+        - [jedisRedisConfig](./cache/src/main/java/com/yoshino/cache/config/JedisRedisConfig.java)
 ```text
+spring:
+  redis:
     jedis:
       pool:
         max-active: 16
-        max-wait: 10ms
+        max-wait: 10
+        max-idle: 8
+        min-idle: 0
+    timeout: 100
 ```
    
 4. （必做）基于 Redis 封装分布式数据操作：
