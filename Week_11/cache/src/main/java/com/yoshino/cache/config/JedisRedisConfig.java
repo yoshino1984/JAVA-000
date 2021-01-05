@@ -98,22 +98,6 @@ public class JedisRedisConfig extends CachingConfigurerSupport {
         return new JedisConnectionFactory(redisStandaloneConfiguration, jedisClientConfiguration);
     }
 
-    @Bean
-    public RedisTemplate<String, Serializable> redisTemplate(JedisConnectionFactory connectionFactory) {
-        RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(connectionFactory);
-
-        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
-
-        redisTemplate.setKeySerializer(genericJackson2JsonRedisSerializer);
-        redisTemplate.setValueSerializer(genericJackson2JsonRedisSerializer);
-
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(genericJackson2JsonRedisSerializer);
-
-        return redisTemplate;
-    }
-
     /**
      * 缓存管理器
      *
