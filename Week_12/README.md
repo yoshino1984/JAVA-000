@@ -55,28 +55,29 @@ master0:name=mymaster,status=ok,address=127.0.0.1:6376,slaves=2,sentinels=3
 
 - cluster
 ```shell
-sed redis6376.conf 's/6376/6375/g' >> redis6375.conf
-sed redis6376.conf 's/6376/6374/g' >> redis6374.conf
+sed 's/6376/6375/g' redis6376.conf >> redis6375.conf
+sed 's/6376/6374/g' redis6376.conf >> redis6374.conf
+sed 's/6376/6373/g' redis6376.conf >> redis6373.conf
+# 并修改启动cluster配置
 
-# 启动节点 6376 6375 6374 用以组建最小的cluster集群 
-redis-server /Users/xiaoyi/IdeaProjects/git/JAVA-000/Week_12/config/redis6376.conf
-
+# 启动节点 6375 6374  6373用以组建最小的cluster集群 
 redis-server /Users/xiaoyi/IdeaProjects/git/JAVA-000/Week_12/config/redis6375.conf
 
 redis-server /Users/xiaoyi/IdeaProjects/git/JAVA-000/Week_12/config/redis6374.conf
 
-redis-cli --cluster create 127.0.0.1:6376 127.0.0.1:6375 127.0.0.1:6374
-```
-```text
+redis-server /Users/xiaoyi/IdeaProjects/git/JAVA-000/Week_12/config/redis6373.conf
+
+redis-cli --cluster create 127.0.0.1:6373 127.0.0.1:6374 127.0.0.1:6375
+# 结果
 >>> Performing hash slots allocation on 3 nodes...
 Master[0] -> Slots 0 - 5460
 Master[1] -> Slots 5461 - 10922
 Master[2] -> Slots 10923 - 16383
-M: a77c687f200b6cd3b39f020cee2090c1cb34cb02 127.0.0.1:6376
+M: 9e82524a7edc6d6dd8c4e01eb4bfb7bb63921627 127.0.0.1:6373
    slots:[0-5460] (5461 slots) master
-M: c1fee66c6bcb51b3356a80cd4fe89a41c8dfcf77 127.0.0.1:6375
+M: 02ab862af87f8c1017fa82a870554e74ebd23de0 127.0.0.1:6374
    slots:[5461-10922] (5462 slots) master
-M: e2cf5a6eb4f59af0bc6d22dc41d745173e7dd3ee 127.0.0.1:6374
+M: 6c4b5a537deb96de7e6b328be2f51755a57a91fd 127.0.0.1:6375
    slots:[10923-16383] (5461 slots) master
 Can I set the above configuration? (type 'yes' to accept): yes
 >>> Nodes configuration updated
@@ -84,13 +85,13 @@ Can I set the above configuration? (type 'yes' to accept): yes
 >>> Sending CLUSTER MEET messages to join the cluster
 Waiting for the cluster to join
 
->>> Performing Cluster Check (using node 127.0.0.1:6376)
-M: a77c687f200b6cd3b39f020cee2090c1cb34cb02 127.0.0.1:6376
+>>> Performing Cluster Check (using node 127.0.0.1:6373)
+M: 9e82524a7edc6d6dd8c4e01eb4bfb7bb63921627 127.0.0.1:6373
    slots:[0-5460] (5461 slots) master
-M: e2cf5a6eb4f59af0bc6d22dc41d745173e7dd3ee 127.0.0.1:6374
-   slots:[10923-16383] (5461 slots) master
-M: c1fee66c6bcb51b3356a80cd4fe89a41c8dfcf77 127.0.0.1:6375
+M: 02ab862af87f8c1017fa82a870554e74ebd23de0 127.0.0.1:6374
    slots:[5461-10922] (5462 slots) master
+M: 6c4b5a537deb96de7e6b328be2f51755a57a91fd 127.0.0.1:6375
+   slots:[10923-16383] (5461 slots) master
 [OK] All nodes agree about slots configuration.
 >>> Check for open slots...
 >>> Check slots coverage...
@@ -98,8 +99,8 @@ M: c1fee66c6bcb51b3356a80cd4fe89a41c8dfcf77 127.0.0.1:6375
 ```
 集群验证
 ```text
-% redis-cli -p 6376                                                      
-127.0.0.1:6376> cluster info
+% redis-cli -p 6373                                                    
+127.0.0.1:6373> cluster info
 cluster_state:ok
 cluster_slots_assigned:16384
 cluster_slots_ok:16384
@@ -109,14 +110,13 @@ cluster_known_nodes:3
 cluster_size:3
 cluster_current_epoch:3
 cluster_my_epoch:1
-cluster_stats_messages_ping_sent:30
-cluster_stats_messages_pong_sent:30
-cluster_stats_messages_publish_sent:90
-cluster_stats_messages_sent:150
-cluster_stats_messages_ping_received:28
-cluster_stats_messages_pong_received:30
+cluster_stats_messages_ping_sent:64
+cluster_stats_messages_pong_sent:62
+cluster_stats_messages_sent:126
+cluster_stats_messages_ping_received:60
+cluster_stats_messages_pong_received:64
 cluster_stats_messages_meet_received:2
-cluster_stats_messages_received:60
+cluster_stats_messages_received:126
 ```
 
 
