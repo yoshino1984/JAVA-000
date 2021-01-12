@@ -1,0 +1,11 @@
+# \u5E94\u7528\u540D\u79F0
+spring:
+  application:
+    name: homework1302
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9001,127.0.0.1:9002,127.0.0.1:9003
+    consumer:
+      bootstrap-servers: 127.0.0.1:9001,127.0.0.1:9002,127.0.0.1:9003
+server:
+  port: 8081
