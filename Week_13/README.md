@@ -53,8 +53,10 @@ listeners=PLAINTEXT://localhost:9003
 log.dirs=/tmp/kafka/kafka-logs3
 broker.list=localhost:9001,localhost:9002,localhost:9003
 ```
-首先进入到安装目录下然后依次 启动zk，启动三个kafka 服务器，集群即搭建成功
+1. 删除kafka的日志文件，避免影响启动
+2. 进入到安装目录下然后依次 启动zk，启动三个kafka 服务器，集群即搭建成功
 ```text
+rm -rf /tmp/kafka/
 bin/zookeeper-server-start.sh config/zookeeper.properties
 bin/kafka-server-start.sh config/cluster/server9001.properties
 bin/kafka-server-start.sh config/cluster/server9002.properties
