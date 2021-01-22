@@ -22,9 +22,10 @@ public class KmqDemo {
         flag[0] = true;
         new Thread(() -> {
             while (flag[0]) {
-                KmqMessage<Order> message = consumer.poll(100);
+                KmqMessage<Order> message = consumer.get();
                 if(null != message) {
-                    System.out.println(message.getBody());
+                    System.out.println(message.getMsgId() + " - " + message.getBody());
+                    consumer.confirm(message.getMsgId());
                 }
             }
             System.out.println("程序退出。");
@@ -33,7 +34,7 @@ public class KmqDemo {
         KmqProducer producer = broker.createProducer();
         for (int i = 0; i < 1000; i++) {
             Order order = new Order(1000L + i, System.currentTimeMillis(), "USD2CNY", 6.51d);
-            producer.send(topic, new KmqMessage(null, order));
+            producer.send(topic, new KmqMessage(order));
         }
         Thread.sleep(500);
         System.out.println("点击任何键，发送一条消息；点击q或e，退出程序。");
@@ -41,7 +42,7 @@ public class KmqDemo {
             char c = (char) System.in.read();
             if(c > 20) {
                 System.out.println(c);
-                producer.send(topic, new KmqMessage(null, new Order(100000L + c, System.currentTimeMillis(), "USD2CNY", 6.52d)));
+                producer.send(topic, new KmqMessage(new Order(100000L + c, System.currentTimeMillis(), "USD2CNY", 6.52d)));
             }
 
             if( c == 'q' || c == 'e') break;

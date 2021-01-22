@@ -10,7 +10,7 @@ public final class KmqBroker { // Broker+Connection
     private final Map<String, Kmq> kmqMap = new ConcurrentHashMap<>(64);
 
     public void createTopic(String name){
-        kmqMap.putIfAbsent(name, new Kmq(name,CAPACITY));
+        kmqMap.putIfAbsent(name, new Kmq(name, CAPACITY));
     }
 
     public Kmq findKmq(String topic) {

@@ -1,5 +1,6 @@
 package io.kimmking.kmq.core;
 
+import io.kimmking.kmq.demo.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -13,4 +14,9 @@ public class KmqMessage<T> {
 
     private T body;
 
+    private int msgId;
+
+    public KmqMessage(T body) {
+        this.body = body;
+    }
 }
